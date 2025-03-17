@@ -61,7 +61,8 @@ public class DesafioCadastroPets
                 String espaco = "";
                 if (menu[cont].length()<52)//esse 52 eu desco
                 {   
-                    /*Como descobri o 52
+                    /*
+                    Como descobri o 52
                     for(int cont = 0; cont <menu.length; cont = cont+1)
                     {
                         System.out.println("menu.length = "+menu[cont].length());
