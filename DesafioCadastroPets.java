@@ -3,7 +3,7 @@ import java.util.Scanner;
 //import java.io.PrintWriter;
 import java.io.File;
 
-public class DesafioCadastroPets2
+public class DesafioCadastroPets
 {
     private class pet {
         String nome;
