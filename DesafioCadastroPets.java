@@ -5,16 +5,15 @@ import java.io.File;
 
 public class DesafioCadastroPets
 {
-    private class pet {
+    public static class pet 
+    {
         String nome;
         String tipo;
         String sexo;
-        String endereco;
+        String endereco[];
         String bairro;
         String idade;
         String raca;
-    
-        
     }
     
     public static void main(String[] args) throws Exception
@@ -22,14 +21,21 @@ public class DesafioCadastroPets
         System.out.println("-----------------------------Start program---------------------------------------------------------\n");
         
         //imprimindo arquivo
-        File f1 = new File("formulario.txt");
-        Scanner read = new Scanner(f1);
-        boolean temlinha;
-        while (temlinha = read.hasNextLine()) 
+        File f1 = new File("formulario.txt");//acessa o arquivo
+        Scanner read = new Scanner(f1);//cria leitor para o formulario
+        String formulario [] = new String[7];//cria vetor para armazenar o formulário
+        int cont3=0;
+
+        while (read.hasNextLine()) 
+        /*Lê, armazena e printa o formulario */
         {
-            System.out.println(read.nextLine());
+            formulario[cont3] = read.nextLine();
+            System.out.println(formulario[cont3]);
+            cont3 = cont3 + 1;
         }
         read.close();
+
+
         String menu [] = new String[6];
         menu[0] = "1.Cadastrar novo pet";
         menu[1] = "2.Alterar os dados do pet cadastrado";
@@ -88,7 +94,8 @@ public class DesafioCadastroPets
 
             //Escolha da opção do menu
             System.out.println("Digite a opção desejada:");
-                        
+            
+            
             do
             {System.out.println("\n----------------inicio while2----------------\n");
                 
@@ -99,10 +106,50 @@ public class DesafioCadastroPets
                 {
                     
                     case 1:
-                        System.out.println("Opcao selecionada = "+menu[opcao-1]);
-                        System.out.print("Digite o numero da soma");
-                        soma = 1 + ent.nextInt();
-                        System.out.println("soma = "+soma);
+                        System.out.println("Opcao selecionada: "+menu[opcao-1]);
+                        pet pet = new pet();
+                        for(int cont4 = 0;cont4<7;cont4=cont4+1)
+                        {
+                            System.out.println(formulario[cont4]);
+                            
+                            switch (cont4) {
+                                case 0:
+                                    pet.nome = ent.next();
+                                    break;
+                            
+                                case 1:
+                                    pet.tipo = ent.next();
+                                    break;
+
+                                case 2:
+                                    pet.sexo = ent.next();
+                                    break;
+
+                                case 3:
+                                    pet.sexo = ent.next();
+                                    break;
+
+                                case 4:
+                                    
+                                    break;
+
+                                case 5:
+                                    
+                                    break;
+
+                                case 6:
+                                    
+                                    break;
+                                
+                            }
+                        }
+                        
+
+
+
+
+
+
                         break;
 
                     case 2:
