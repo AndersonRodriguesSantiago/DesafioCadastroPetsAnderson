@@ -1,19 +1,72 @@
-//import java.util.Arrays;
+import java.util.Arrays;
 import java.util.Scanner;
 //import java.io.PrintWriter;
 import java.io.File;
 
 public class DesafioCadastroPets
 {
-    public static class pet 
+    
+
+    public class pet
     {
+        
         String nome;
-        String tipo;
-        String sexo;
-        String endereco[];
+        String sobrenome;
+        public enum Tipo
+        {
+            CACHORRO,GATO,COELHO
+        }
+        public enum Sexo
+        {
+            MASCULINO,FEMININO
+        }
+        Tipo tipo;
+        Sexo sexo;
+        String endereco[] = new String[3];
         String bairro;
         String idade;
         String raca;
+
+        // public pet(String nome, String sobrenome, Tipo tipo, Sexo sexo, String end1, String end2, String end3, String bairro, String idade, String raca)
+        // {
+        //     this.nome = nome;
+        //     this.sobrenome = sobrenome;
+        //     this.tipo = tipo;
+        //     this.sexo = sexo;
+        //     this.endereco[0] = end1;
+        //     this.endereco[1] = end2;
+        //     this.endereco[2] = end3;
+        //     this.bairro = bairro;
+        //     this.idade = idade;
+        //     this.raca = raca;
+        // }
+
+        // public String getNome() {
+        //     return nome;
+        // }
+        // public String getSobrenome() {
+        //     return sobrenome;
+        // }
+        // public Tipo getTipo() {
+        //     return tipo;
+        // }
+        // public Sexo getSexo() {
+        //     return sexo;
+        // }
+        // public String[] getEndereco() {
+        //     return endereco;
+        // }
+        // public String getBairro() {
+        //     return bairro;
+        // }
+        // public String getIdade() {
+        //     return idade;
+        // }
+        // public String getRaca() {
+        //     return raca;
+        // }
+
+
     }
     
     public static void main(String[] args) throws Exception
@@ -114,23 +167,36 @@ public class DesafioCadastroPets
                             
                             switch (cont4) {
                                 case 0:
+                                    System.out.println("Digite o primeiro nome:");
                                     pet.nome = ent.next();
+                                    System.out.println("Digite o sobrenome:");
+                                    pet.sobrenome = ent.next();
+
                                     break;
                             
                                 case 1:
-                                    pet.tipo = ent.next();
+                                    pet.tipo = ent.next().toUpperCase();
                                     break;
 
                                 case 2:
-                                    pet.sexo = ent.next();
+                                    String entrada = ent.next().toUpperCase();
+
+                                    try
+                                    {
+                                        pet.sexo = pet.valueOf(entrada);
+                                    }catch (IllegalArgumentException e) 
+                                    {
+                                    System.out.println("Erro: Opção inválida! Tente novamente.");
+                                    }
+
                                     break;
 
                                 case 3:
-                                    pet.sexo = ent.next();
+                                    pet.endereco[0] = ent.next();
                                     break;
 
                                 case 4:
-                                    
+                                    pet.bairro = ent.next();
                                     break;
 
                                 case 5:
