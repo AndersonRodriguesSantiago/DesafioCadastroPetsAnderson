@@ -1,70 +1,40 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 //import java.io.PrintWriter;
 import java.io.File;
 
+
+
+
 public class DesafioCadastroPets
 {
     
 
-    public class pet
+    public static class pet
     {
         
-        String nome;
-        String sobrenome;
-        public enum Tipo
-        {
-            CACHORRO,GATO,COELHO
-        }
-        public enum Sexo
-        {
-            MASCULINO,FEMININO
-        }
-        Tipo tipo;
-        Sexo sexo;
-        String endereco[] = new String[3];
-        String bairro;
-        String idade;
-        String raca;
+        private String nome;
+        private String sobrenome;
+        private Tipo tipo; //CACHORRO,GATO,COELHO
+        private Sexo sexo; //MASCULINO,FEMININO
+        private String endereco[] = new String[3];
+        private String idade;
+        private String peso;
+        private String raca;
 
-        // public pet(String nome, String sobrenome, Tipo tipo, Sexo sexo, String end1, String end2, String end3, String bairro, String idade, String raca)
-        // {
-        //     this.nome = nome;
-        //     this.sobrenome = sobrenome;
-        //     this.tipo = tipo;
-        //     this.sexo = sexo;
-        //     this.endereco[0] = end1;
-        //     this.endereco[1] = end2;
-        //     this.endereco[2] = end3;
-        //     this.bairro = bairro;
-        //     this.idade = idade;
-        //     this.raca = raca;
-        // }
-
-        // public String getNome() {
-        //     return nome;
-        // }
-        // public String getSobrenome() {
-        //     return sobrenome;
-        // }
-        // public Tipo getTipo() {
-        //     return tipo;
-        // }
-        // public Sexo getSexo() {
-        //     return sexo;
-        // }
-        // public String[] getEndereco() {
-        //     return endereco;
-        // }
-        // public String getBairro() {
-        //     return bairro;
-        // }
-        // public String getIdade() {
-        //     return idade;
-        // }
-        // public String getRaca() {
-        //     return raca;
-        // }
+        public void Pet(String nome, String sobrenome, Tipo tipo, Sexo sexo, String end1, String end2, String end3, String idade, String peso, String raca) {
+            this.nome = nome;
+            this.sobrenome = sobrenome;
+            this.tipo = tipo;
+            this.sexo = sexo;
+            this.endereco[0] = end1;
+            this.endereco[1] = end2;
+            this.endereco[2] = end3;
+            this.idade = idade;
+            this.peso = peso;
+            this.raca = raca;
+        }
 
 
     }
@@ -102,6 +72,7 @@ public class DesafioCadastroPets
         int opcao = 7;
         boolean aux1 = true;
         Scanner ent = new Scanner(System.in);
+        ArrayList<pet> listaDePets = new ArrayList<>();
         String aux3 ="";
         while(aux1==true)
         {   
@@ -167,55 +138,71 @@ public class DesafioCadastroPets
                             
                             switch (cont4) {
                                 case 0:
-                                    System.out.println("Digite o primeiro nome:");
-                                    pet.nome = ent.next();
-                                    System.out.println("Digite o sobrenome:");
-                                    pet.sobrenome = ent.next();
+                                    ent.nextLine(); // Consumir buffer
+                                    pet.nome = ent.nextLine().trim();
+                                    pet.sobrenome = ent.nextLine().trim();
 
                                     break;
                             
                                 case 1:
-                                    pet.tipo = ent.next().toUpperCase();
+                                    pet.tipo = null;
+
+                                    try {
+                                        pet.tipo = Tipo.valueOf(ent.next().trim().toUpperCase());
+                                    } catch (IllegalArgumentException e) {
+                                        System.out.println("Tipo inválido! Use 'CACHORRO','GATO','COELHO'.");
+                                        System.exit(0);
+                                    }
                                     break;
 
                                 case 2:
-                                    String entrada = ent.next().toUpperCase();
-
-                                    try
-                                    {
-                                        pet.sexo = pet.valueOf(entrada);
-                                    }catch (IllegalArgumentException e) 
-                                    {
-                                    System.out.println("Erro: Opção inválida! Tente novamente.");
+                                    try {
+                                        ent.nextLine(); // Consumir buffer
+                                        pet.sexo = Sexo.valueOf(ent.nextLine().trim().toUpperCase());
+                                    } catch (IllegalArgumentException e) {
+                                        System.out.println("Sexo inválido! Use 'MASCULINO' ou 'FEMININO'.");
+                                        System.exit(0);
                                     }
-
                                     break;
 
                                 case 3:
-                                    pet.endereco[0] = ent.next();
+                                    
+                                    pet.endereco[0] = ent.nextLine();
+                                    pet.endereco[1] = ent.nextLine();
+                                    pet.endereco[2] = ent.nextLine();
                                     break;
 
                                 case 4:
-                                    pet.bairro = ent.next();
-                                    break;
+                                    pet.idade = ent.nextLine().trim();
+                                break;
 
                                 case 5:
+                                    pet.peso = ent.nextLine().trim();
                                     
                                     break;
 
                                 case 6:
+                                    System.out.println("Digite a raça:");
+                                    pet.raca = ent.nextLine().trim();
                                     
                                     break;
                                 
                             }
                         }
                         
-
-
-
-
-
-
+                        System.out.println("\nPet cadastrado com sucesso!");
+                        System.out.println("Nome: " + pet.nome);
+                        System.out.println("Sobrenome: " + pet.sobrenome);
+                        System.out.println("Tipo: " + pet.tipo.getDesc());
+                        System.out.println("Sexo: " + pet.sexo.getDesc());
+                        System.out.println("Endereço: " + Arrays.toString(pet.endereco));
+                        System.out.println("Idade: " + pet.idade);
+                        System.out.println("Peso: " + pet.peso);
+                        System.out.println("Raça: " + pet.raca);
+                        System.out.println("\n");
+                        
+                        listaDePets.add(pet);//adiciona o pet na lista de pets
+                        
                         break;
 
                     case 2:
@@ -234,9 +221,23 @@ public class DesafioCadastroPets
                     
                     case 4:
                         System.out.println("Opcao selecionada = "+menu[opcao-1]);
-                        System.out.print("Digite o numero da soma");
-                        soma = 4 + ent.nextInt();
-                        System.out.println("soma = "+soma);
+                        System.out.println("Lista de pets cadastrados: ");
+
+                        for (int i = 0; i < listaDePets.size(); i++) {
+                            System.out.println(
+                                listaDePets.get(i).nome + " " + 
+                                listaDePets.get(i).sobrenome + " " +
+                                listaDePets.get(i).tipo.getDesc() + " " +
+                                listaDePets.get(i).sexo.getDesc() + " " +
+                                Arrays.toString(listaDePets.get(i).endereco) + " " +
+                                listaDePets.get(i).idade + " " +
+                                listaDePets.get(i).peso + " " +
+                                listaDePets.get(i).raca
+                                );
+                            // pet p = listaDePets.get(i);
+                            // System.out.println("Pet " + (i + 1) + ": " + p.nome + " " + p.sobrenome);
+                        }
+
                         break;
                     
                     case 5:
